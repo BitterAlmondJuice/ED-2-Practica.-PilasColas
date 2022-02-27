@@ -30,9 +30,9 @@ public class Asignatura {
         this.calificacion = calificacion;
     }
 
-    public void mostrar() {
+    public String mostrar() {
 
-        System.out.println(getNombre() + " (" + getCalificacion() + ")");
+        return(nombre + " (" + calificacion + ")");
     }
 
 
