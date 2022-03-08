@@ -1,57 +1,45 @@
 public class AlgoritmosPila {
 
-    public Asignatura asignaturaNotaMáxima(Pila asignaturas) {
+    public Asignatura asignaturaNotaMaxima(Pila asignaturas) {
+        AlgoritmosPila aux = new AlgoritmosPila();
+        Asignatura resultado = new Asignatura("", 0);
+        resultado = aux.asignaturaNotaMaxima(asignaturas, resultado);
+        return resultado;
+    }
+    public Asignatura asignaturaNotaMaxima(Pila asignaturas, Asignatura resultado){
+        AlgoritmosPila aux = new AlgoritmosPila();
+        if (asignaturas.getNumElementos() >= 1) {
+            Asignatura auxiliar = asignaturas.desapilar();
+            if (resultado.getCalificacion() < auxiliar.getCalificacion()){
+                resultado = auxiliar;
+                resultado.setNombre(auxiliar.getNombre());
+                resultado.setCalificacion(auxiliar.getCalificacion());
 
-        Asignatura resultado = null;
-        //Completar
+            }
+            resultado = aux.asignaturaNotaMaxima(asignaturas, resultado);
+            asignaturas.apilar(auxiliar);
+        }
         return resultado;
     }
 
-    public double notaMínima(Pila asignaturas) {
-
-
-        double resultado;
-
-        //aqui tengo que conseguir iterar sobre la pila y comparar los valores hasta conseguir el menor de toda la pila.
-        //el problema por ahora es que no se como coño usar el getSiguiente() en los nodos de la pila, ya que son de clase Asignatura
-        //una buena solucion seria ir desapilando la pila en cada iteracion y luego devolverla a su estado normal
-
-
-        double dobleAuxiliar1 = asignaturas.getCima().getCalificacion();
-        double dobleAuxiliar2;
-        asignaturas.quitarCima();
-        if (asignaturas.getCima() == null) {
-            dobleAuxiliar2 = dobleAuxiliar1;
-            resultado = dobleAuxiliar1;
-            return resultado;
+    public double notaMinima(Pila asignaturas, double resultado) {
+        AlgoritmosPila aux = new AlgoritmosPila();
+        if (asignaturas.getNumElementos() >= 1) {
+            Asignatura auxiliar = asignaturas.desapilar();
+            if (auxiliar != null) {
+                if (auxiliar.getCalificacion() < resultado) {
+                    resultado = auxiliar.getCalificacion();
+                }
+                resultado = aux.notaMinima(asignaturas, resultado);
+                asignaturas.apilar(auxiliar);
+            }
         }
-        else {
-            dobleAuxiliar2 = asignaturas.getCima().getCalificacion();
-        }
-
-
-        /*debe ser hecho de forma recursiva (los muertos pisoteados de la recursividad)
-        he pensado en incluir un nodo mas con valor 11, ya que la maxima nota es 10, para que se compare con la que seria la primera asignatura,
-        quedando asi la nota de la primera asignatura guardada en la variable auxiliar y permitiendo asi la llamada recursiva */
-
-        if (dobleAuxiliar1 < dobleAuxiliar2) {
-            resultado = dobleAuxiliar1;
-        }
-        else {
-            resultado = dobleAuxiliar2;
-        }
-
-        if (asignaturas.vacia() == true) {
-            return resultado;
-        }
-        else {
-            notaMínima(asignaturas);
-        }
-
-        /*tengo un problemilla, me da NullPointerException, probablemente porque en algun momento de la ejecucion la pila estara ya vacia e intentara */
         return resultado;
-        //Completar
-
+    }
+    public double notaMinima(Pila asignaturas){
+        AlgoritmosPila aux = new AlgoritmosPila();
+        double resultado = aux.notaMinima(asignaturas, 9999);
+        return resultado;
     }
 
 

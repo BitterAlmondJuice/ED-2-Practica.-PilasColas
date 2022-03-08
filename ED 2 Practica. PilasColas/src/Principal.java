@@ -27,7 +27,8 @@ public class Principal {
     public void pruebasPila(Pila asignaturas) {
         asignaturas.mostrar(); //esto no funciona bien, estará seguramente relacionado con el metodo "mostrar" de la clase "pila"
         AlgoritmosPila algoritmosPila = new AlgoritmosPila();
-        System.out.println(algoritmosPila.notaMínima(asignaturas));
+        System.out.println(algoritmosPila.notaMinima(asignaturas));
+        System.out.println(algoritmosPila.asignaturaNotaMaxima(asignaturas).getNombre());
     }
 
     public Cola prepararCola() {
