@@ -32,7 +32,7 @@ public class Asignatura {
 
     public String mostrar() {
 
-        return(nombre + " (" + calificacion + ")");
+        return("    "+nombre + " (" + calificacion + ")");
     }
 
 

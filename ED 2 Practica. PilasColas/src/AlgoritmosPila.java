@@ -1,28 +1,32 @@
 public class AlgoritmosPila {
 
     public Asignatura asignaturaNotaMaxima(Pila asignaturas) {
+
         AlgoritmosPila aux = new AlgoritmosPila();
-        Asignatura resultado = new Asignatura("", 0);
-        resultado = aux.asignaturaNotaMaxima(asignaturas, resultado);
-        return resultado;
+        Asignatura nombre = new Asignatura("", 0);
+        nombre = aux.asignaturaNotaMaxima(asignaturas, nombre);
+        return nombre;
     }
-    public Asignatura asignaturaNotaMaxima(Pila asignaturas, Asignatura resultado){
+
+    public Asignatura asignaturaNotaMaxima(Pila asignaturas, Asignatura nombre) {
+
         AlgoritmosPila aux = new AlgoritmosPila();
         if (asignaturas.getNumElementos() >= 1) {
             Asignatura auxiliar = asignaturas.desapilar();
-            if (resultado.getCalificacion() < auxiliar.getCalificacion()){
-                resultado = auxiliar;
-                resultado.setNombre(auxiliar.getNombre());
-                resultado.setCalificacion(auxiliar.getCalificacion());
+            if (nombre.getCalificacion() < auxiliar.getCalificacion()) {
+                nombre = auxiliar;
+                nombre.setNombre(auxiliar.getNombre());
+                nombre.setCalificacion(auxiliar.getCalificacion());
 
             }
-            resultado = aux.asignaturaNotaMaxima(asignaturas, resultado);
+            nombre = aux.asignaturaNotaMaxima(asignaturas, nombre);
             asignaturas.apilar(auxiliar);
         }
-        return resultado;
+        return nombre;
     }
 
     public double notaMinima(Pila asignaturas, double resultado) {
+
         AlgoritmosPila aux = new AlgoritmosPila();
         if (asignaturas.getNumElementos() >= 1) {
             Asignatura auxiliar = asignaturas.desapilar();
@@ -36,7 +40,9 @@ public class AlgoritmosPila {
         }
         return resultado;
     }
-    public double notaMinima(Pila asignaturas){
+
+    public double notaMinima(Pila asignaturas) {
+
         AlgoritmosPila aux = new AlgoritmosPila();
         double resultado = aux.notaMinima(asignaturas, 9999);
         return resultado;
@@ -44,7 +50,18 @@ public class AlgoritmosPila {
 
 
     public void mostrarAprobadas(Pila asignaturas) {
-        //Completar
+
+        AlgoritmosPila aux = new AlgoritmosPila();
+        if (asignaturas.getNumElementos() >= 1) {
+            Asignatura auxiliar = asignaturas.desapilar();
+
+            if (auxiliar.getCalificacion() >= 5) {
+                System.out.println(auxiliar.mostrar());
+            }
+            aux.mostrarAprobadas(asignaturas);
+            asignaturas.apilar(auxiliar);
+
+        }
     }
 
 }

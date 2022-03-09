@@ -1,5 +1,7 @@
 public class Principal {
+
     public static void main(String[] args) {
+
         System.out.println("Practica ED Pilas y Colas de: " + "Fernando García Pérez");
         System.out.println("Numero Matricula: " + "BS0076");
         Principal pruebas = new Principal();
@@ -12,6 +14,7 @@ public class Principal {
     }
 
     public Pila prepararPila() {
+
         Pila asignaturas = new Pila();
         Asignatura ffi = new Asignatura("Fundamentos Físicos de la Informática", 3.50);
         Asignatura ed = new Asignatura("Estructuras de Datos", 6.35);
@@ -25,13 +28,19 @@ public class Principal {
     }
 
     public void pruebasPila(Pila asignaturas) {
+
         asignaturas.mostrar(); //esto no funciona bien, estará seguramente relacionado con el metodo "mostrar" de la clase "pila"
         AlgoritmosPila algoritmosPila = new AlgoritmosPila();
-        System.out.println(algoritmosPila.notaMinima(asignaturas));
-        System.out.println(algoritmosPila.asignaturaNotaMaxima(asignaturas).getNombre());
+        System.out.println("Calificación mínima:");
+        System.out.println("    " + algoritmosPila.notaMinima(asignaturas));
+        System.out.println("Asignatura con nota máxima:");
+        System.out.println("    " + algoritmosPila.asignaturaNotaMaxima(asignaturas).getNombre());
+        System.out.println("Asignaturas aprobadas:");
+        algoritmosPila.mostrarAprobadas(asignaturas);
     }
 
     public Cola prepararCola() {
+
         Cola grupo = new Cola();
         /*Alumno a1 = new Alumno("Felipe Arias Gonzalez", "aa1253");
         Alumno a2 = new Alumno("Manuel Garcia Sacedón", "ax0074");
@@ -59,5 +68,6 @@ public class Principal {
 
     public void pruebasCola(Cola grupo) {
         //Completar
-	}
+    }
+
 }
