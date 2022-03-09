@@ -9,6 +9,8 @@ public class Principal {
         Pila asignaturas = pruebas.prepararPila();
         pruebas.pruebasPila(asignaturas);
 
+        System.out.println("-----------------------------------");
+
         Cola grupo = pruebas.prepararCola();
         pruebas.pruebasCola(grupo);
     }
@@ -29,7 +31,9 @@ public class Principal {
 
     public void pruebasPila(Pila asignaturas) {
 
+
         asignaturas.mostrar(); //esto no funciona bien, estará seguramente relacionado con el metodo "mostrar" de la clase "pila"
+
         AlgoritmosPila algoritmosPila = new AlgoritmosPila();
         System.out.println("Calificación mínima:");
         System.out.println("    " + algoritmosPila.notaMinima(asignaturas));
@@ -37,12 +41,14 @@ public class Principal {
         System.out.println("    " + algoritmosPila.asignaturaNotaMaxima(asignaturas).getNombre());
         System.out.println("Asignaturas aprobadas:");
         algoritmosPila.mostrarAprobadas(asignaturas);
+
+
     }
 
     public Cola prepararCola() {
 
         Cola grupo = new Cola();
-        /*Alumno a1 = new Alumno("Felipe Arias Gonzalez", "aa1253");
+        Alumno a1 = new Alumno("Felipe Arias Gonzalez", "aa1253");
         Alumno a2 = new Alumno("Manuel Garcia Sacedón", "ax0074");
         Alumno a3 = new Alumno("Margarita Lopez Medina", "mj7726");
         Alumno a4 = new Alumno("Estela Sanchez Arellano", "bc2658");
@@ -62,12 +68,35 @@ public class Principal {
         grupo.encolar(a1);
         grupo.encolar(a2);
         grupo.encolar(a3);
-        grupo.encolar(a4);*/
+        grupo.encolar(a4);
         return grupo;
     }
 
     public void pruebasCola(Cola grupo) {
-        //Completar
+
+
+        Alumno auxiliar = null;
+
+        AlgoritmosCola algoritmosCola = new AlgoritmosCola();
+        algoritmosCola.mostrarGrupo(grupo);
+        System.out.println("Calificación media del grupo: " + algoritmosCola.calificaciónMedia(grupo));
+        System.out.println("");
+        System.out.println("Alumnos aprobados:");
+        System.out.println("Contenido del grupo:");
+
+        Cola aprobados = algoritmosCola.alumnosAprobados(grupo);
+
+        for (int i = 1; i < grupo.getNumElementos(); i++) {
+            auxiliar = grupo.desencolar();
+            auxiliar.mostrarAlumno();
+            grupo.encolar(auxiliar);
+        }
+        grupo.encolar(auxiliar);
+
+        System.out.println("Calificación media de los aprobados: "+ algoritmosCola.calificaciónMedia(aprobados));
+
+
     }
+
 
 }
